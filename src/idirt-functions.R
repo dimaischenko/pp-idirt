@@ -134,6 +134,9 @@ getBestProt <- function(l.prj) {
   return(v.selp)
 }
 
+## deprecated function?
+## may be now we don't need it
+
 # ipi to gene names
 ipi2Gene <- function(l.prj) {
   require(data.table)
@@ -141,18 +144,20 @@ ipi2Gene <- function(l.prj) {
   # all ipi to prot
   ipi.gen <- data.table(unique(do.call(rbind, lapply(l.prj, function(x) x[["ipi"]]))))
   setnames(ipi.gen, c("ipi", "gene"))
+  # uniq
   ipi.gen <- ddply(ipi.gen, "ipi", .fun = function(x) x[1, ])
+  
   # create vector ipi -- protein
   ipi.v <- ipi.gen$gene
   names(ipi.v) <- ipi.gen$ipi
+  
   ipi.sv <- ipi.v
   ipi.sv <- substr(gsub(".*\\:(.*).*", "\\1", ipi.sv), 1, 20)
 
   ipi.sv <- gsub("(.*)\\ .*", "\\1", ipi.sv)
 
   # read ipi to gene 
-  df.ipi <- read.table("data/ipi.HUMAN.xrefs", sep = "\t")
-
+  df.ipi <- read.table("data/tbls/ipi.HUMAN.xrefs", sep = "\t")
   df.ipi$gene <- gsub(".*\\,(.*)\\;.*", "\\1", df.ipi$V11)
   ipi.gene.v <- df.ipi$gene
   names(ipi.gene.v) <- df.ipi$V3
@@ -163,8 +168,7 @@ ipi2Gene <- function(l.prj) {
   ipi.gv[v.nm.ipi %in% names(ipi.gene.v)] <- 
     ipi.gene.v[v.nm.ipi[v.nm.ipi %in% names(ipi.gene.v)]]
 
-  write(ipi.sv[v.nm.ipi %ni% names(ipi.gene.v)], file = "tbls/ipi_uni.txt")
-  df.david <- read.table("tbls/ipi_uni_david.txt", sep = "\t", header = T,
+  df.david <- read.table("data/tbls/ipi_uni_david.txt", sep = "\t", header = T,
                         stringsAsFactors = F)
 
   uni.g <- toupper(df.david$To)
