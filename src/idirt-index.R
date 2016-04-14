@@ -5,9 +5,9 @@ setwd("/home/dima/mega/pp-idirt")
 library(data.table)
 
 # load setup data
-source("src/idirt-setup.R")
+source("src/setup/idirt-setup.R")
 # load IDIRT functions
-source("src/idirt-functions.R")
+source("src/lib/idirt-functions.R")
 
 # load data from setup file
 total.prj <- loadIDIRT(i.prj)
