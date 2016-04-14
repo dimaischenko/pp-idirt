@@ -1,0 +1,158 @@
+From	To	Species	Gene Name
+Q5VSP4	LCN1	Homo sapiens	lipocalin 1-like 1; lipocalin 1 (tear prealbumin)
+Q5VSP4	LCN1L1	Homo sapiens	lipocalin 1-like 1; lipocalin 1 (tear prealbumin)
+Q3LRW5	tp53	Homo sapiens	tumor protein p53
+Q8NDH0	Wdr6	Homo sapiens	WD repeat domain 6
+Q1XBU7	LOC729992	Homo sapiens	similar to heat shock 70kD protein binding protein; suppression of tumorigenicity 13 (colon carcinoma) (Hsp70 interacting protein)
+Q1XBU7	st13	Homo sapiens	similar to heat shock 70kD protein binding protein; suppression of tumorigenicity 13 (colon carcinoma) (Hsp70 interacting protein)
+Q1XBU7	LOC344328	Homo sapiens	similar to heat shock 70kD protein binding protein; suppression of tumorigenicity 13 (colon carcinoma) (Hsp70 interacting protein)
+P07437	TUBBP2	Homo sapiens	tubulin, beta; similar to tubulin, beta 5; tubulin, beta pseudogene 2; tubulin, beta pseudogene 1
+P07437	TUBBP1	Homo sapiens	tubulin, beta; similar to tubulin, beta 5; tubulin, beta pseudogene 2; tubulin, beta pseudogene 1
+P07437	LOC442308	Homo sapiens	tubulin, beta; similar to tubulin, beta 5; tubulin, beta pseudogene 2; tubulin, beta pseudogene 1
+P07437	tubB	Homo sapiens	tubulin, beta; similar to tubulin, beta 5; tubulin, beta pseudogene 2; tubulin, beta pseudogene 1
+Q92928	rab1C	Homo sapiens	RAB1C, member RAS oncogene family pseudogene
+Q6DRA6	HIST2H2BD	Homo sapiens	histone cluster 2, H2bd
+B3KWD0	xpo1	Homo sapiens	exportin 1 (CRM1 homolog, yeast)
+Q3ZCM7	TUBB8	Homo sapiens	tubulin, beta 8
+Q59ES1	LTA4H	Homo sapiens	leukotriene A4 hydrolase
+Q0QET7	LOC100133042	Homo sapiens	glyceraldehyde-3-phosphate dehydrogenase-like 6; hypothetical protein LOC100133042; glyceraldehyde-3-phosphate dehydrogenase
+Q0QET7	GAPDH	Homo sapiens	glyceraldehyde-3-phosphate dehydrogenase-like 6; hypothetical protein LOC100133042; glyceraldehyde-3-phosphate dehydrogenase
+Q0QET7	GAPDHL6	Homo sapiens	glyceraldehyde-3-phosphate dehydrogenase-like 6; hypothetical protein LOC100133042; glyceraldehyde-3-phosphate dehydrogenase
+Q9UBB4	atxn10	Homo sapiens	ataxin 10
+Q53G62	mRpS28	Homo sapiens	mitochondrial ribosomal protein S28
+Q4LE64	NUMA1	Homo sapiens	nuclear mitotic apparatus protein 1
+A8MY74	FYTTD1	Homo sapiens	forty-two-three domain containing 1
+Q8WUD4	ccdc12	Homo sapiens	coiled-coil domain containing 12
+Q9BRJ2	MRPL45	Homo sapiens	mitochondrial ribosomal protein L45
+Q6TXQ4	LOC440926	Homo sapiens	H3 histone, family 3B (H3.3B); H3 histone, family 3A pseudogene; H3 histone, family 3A; similar to H3 histone, family 3B; similar to histone H3.3B
+Q6TXQ4	h3f3a	Homo sapiens	H3 histone, family 3B (H3.3B); H3 histone, family 3A pseudogene; H3 histone, family 3A; similar to H3 histone, family 3B; similar to histone H3.3B
+Q6TXQ4	LOC644914	Homo sapiens	H3 histone, family 3B (H3.3B); H3 histone, family 3A pseudogene; H3 histone, family 3A; similar to H3 histone, family 3B; similar to histone H3.3B
+Q6TXQ4	LOC728914	Homo sapiens	H3 histone, family 3B (H3.3B); H3 histone, family 3A pseudogene; H3 histone, family 3A; similar to H3 histone, family 3B; similar to histone H3.3B
+Q6TXQ4	H3f3b	Homo sapiens	H3 histone, family 3B (H3.3B); H3 histone, family 3A pseudogene; H3 histone, family 3A; similar to H3 histone, family 3B; similar to histone H3.3B
+Q96Q59	mrps17	Homo sapiens	mitochondrial ribosomal protein S17
+A2ICT2	Hspa4l	Homo sapiens	heat shock 70kDa protein 4-like
+Q8N8Y7	LOC100129585	Homo sapiens	similar to RNA binding motif protein, X-linked; similar to hCG2011544; RNA binding motif protein, X-linked
+Q8N8Y7	LOC100131735	Homo sapiens	similar to RNA binding motif protein, X-linked; similar to hCG2011544; RNA binding motif protein, X-linked
+Q8N8Y7	RBMX	Homo sapiens	similar to RNA binding motif protein, X-linked; similar to hCG2011544; RNA binding motif protein, X-linked
+Q5VY36	RPL13AP25	Homo sapiens	ribosomal protein L13a pseudogene 20; ribosomal protein L13a pseudogene 22; ribosomal protein L13a pseudogene 25
+Q5VY36	RPL13AP22	Homo sapiens	ribosomal protein L13a pseudogene 20; ribosomal protein L13a pseudogene 22; ribosomal protein L13a pseudogene 25
+Q5VY36	RPL13AP20	Homo sapiens	ribosomal protein L13a pseudogene 20; ribosomal protein L13a pseudogene 22; ribosomal protein L13a pseudogene 25
+Q5VY36	LOC100287887	Homo sapiens	similar to ribosomal protein L13a
+P01857	IGHV3-11	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	IGHV3-7	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	IGHG3	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	Ighg1	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	IGH@	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	IGHM	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+P01857	ighv4-31	Homo sapiens	immunoglobulin heavy constant gamma 1 (G1m marker); immunoglobulin heavy constant mu; immunoglobulin heavy variable 3-7; immunoglobulin heavy constant gamma 3 (G3m marker); immunoglobulin heavy variable 3-11 (gene/pseudogene); immunoglobulin heavy variable 4-31; immunoglobulin heavy locus
+B0I1S2	MYH14	Homo sapiens	myosin, heavy chain 14
+A8K9J8	Ciz1	Homo sapiens	CDKN1A interacting zinc finger protein 1
+Q6NUL7	sptlc1	Homo sapiens	serine palmitoyltransferase, long chain base subunit 1
+Q6DKK2	TTC19	Homo sapiens	tetratricopeptide repeat domain 19
+Q12880	L1RE2	Homo sapiens	LINE1 retrotransposable element 2
+Q9BYX7	POTEKP	Homo sapiens	POTE ankyrin domain family, member K
+Q5HY50	RPL10P15	Homo sapiens	ribosomal protein L10; ribosomal protein L10 pseudogene 15; ribosomal protein L10 pseudogene 6; ribosomal protein L10 pseudogene 16; ribosomal protein L10 pseudogene 9
+Q5HY50	rpl10	Homo sapiens	ribosomal protein L10; ribosomal protein L10 pseudogene 15; ribosomal protein L10 pseudogene 6; ribosomal protein L10 pseudogene 16; ribosomal protein L10 pseudogene 9
+Q5HY50	RPL10P9	Homo sapiens	ribosomal protein L10; ribosomal protein L10 pseudogene 15; ribosomal protein L10 pseudogene 6; ribosomal protein L10 pseudogene 16; ribosomal protein L10 pseudogene 9
+Q5HY50	RPL10P16	Homo sapiens	ribosomal protein L10; ribosomal protein L10 pseudogene 15; ribosomal protein L10 pseudogene 6; ribosomal protein L10 pseudogene 16; ribosomal protein L10 pseudogene 9
+Q5HY50	RPL10P6	Homo sapiens	ribosomal protein L10; ribosomal protein L10 pseudogene 15; ribosomal protein L10 pseudogene 6; ribosomal protein L10 pseudogene 16; ribosomal protein L10 pseudogene 9
+Q5JVH5	RPS26P8	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P39	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P38	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P35	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P25	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P31	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P6	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P20	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P50	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P2	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P53	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+Q5JVH5	RPS26P54	Homo sapiens	ribosomal protein S26 pseudogene 38; ribosomal protein S26 pseudogene 39; ribosomal protein S26 pseudogene 35; ribosomal protein S26 pseudogene 31; ribosomal protein S26 pseudogene 20; ribosomal protein S26 pseudogene 54; ribosomal protein S26 pseudogene 2; ribosomal protein S26 pseudogene 53; ribosomal protein S26 pseudogene 25; ribosomal protein S26 pseudogene 50; ribosomal protein S26 pseudogene 6; ribosomal protein S26 pseudogene 8; ribosomal protein S26
+B3KX51	gnai2	Homo sapiens	guanine nucleotide binding protein (G protein), alpha inhibiting activity polypeptide 2
+Q8WUM5	GEMIN4	Homo sapiens	gem (nuclear organelle) associated protein 4
+Q9P0J0	Ndufa13	Homo sapiens	NADH dehydrogenase (ubiquinone) 1 alpha subcomplex, 13
+Q6ZS03	HDLBP	Homo sapiens	high density lipoprotein binding protein
+C9J9R8	NHP2L1	Homo sapiens	NHP2 non-histone chromosome protein 2-like 1 (S. cerevisiae)
+B2RXH8	HNRNPCL1	Homo sapiens	heterogeneous nuclear ribonucleoprotein C-like; heterogeneous nuclear ribonucleoprotein C-like 1; similar to Heterogeneous nuclear ribonucleoprotein C-like dJ845O24.4 (hnRNP core protein C-like)
+B2RXH8	LOC649330	Homo sapiens	heterogeneous nuclear ribonucleoprotein C-like; heterogeneous nuclear ribonucleoprotein C-like 1; similar to Heterogeneous nuclear ribonucleoprotein C-like dJ845O24.4 (hnRNP core protein C-like)
+B2RXH8	LOC440563	Homo sapiens	heterogeneous nuclear ribonucleoprotein C-like; heterogeneous nuclear ribonucleoprotein C-like 1; similar to Heterogeneous nuclear ribonucleoprotein C-like dJ845O24.4 (hnRNP core protein C-like)
+Q6EHZ3	TXNDC5	Homo sapiens	thioredoxin domain containing 5 (endoplasmic reticulum); muted homolog (mouse)
+Q6EHZ3	MUTED	Homo sapiens	thioredoxin domain containing 5 (endoplasmic reticulum); muted homolog (mouse)
+Q8IZP2	FAM10A5	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+Q8IZP2	FAM10A4	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+Q8IZP2	LOC643310	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+P62491	Rab11a	Homo sapiens	RAB11A, member RAS oncogene family
+Q8NFI4	FAM10A5	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+Q8NFI4	FAM10A4	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+Q8NFI4	LOC643310	Homo sapiens	similar to heat shock 70kD protein binding protein; family with sequence similarity 10, member A4 pseudogene; family with sequence similarity 10, member A5 pseudogene
+Q7Z739	YTHDF3	Homo sapiens	YTH domain family, member 3
+Q8NCF7	SLC25A3	Homo sapiens	solute carrier family 25 (mitochondrial carrier; phosphate carrier), member 3
+P48741	HSPA6	Homo sapiens	heat shock 70kDa protein 7 (HSP70B); heat shock 70kDa protein 6 (HSP70B')
+P48741	HSPA7	Homo sapiens	heat shock 70kDa protein 7 (HSP70B); heat shock 70kDa protein 6 (HSP70B')
+Q9Y5J1	utp18	Homo sapiens	UTP18, small subunit (SSU) processome component, homolog (yeast)
+Q03252	Lmnb2	Homo sapiens	lamin B2
+C9J497	Cdk1	Homo sapiens	cell division cycle 2, G1 to S and G2 to M
+Q02878	RPL6P27	Homo sapiens	ribosomal protein L6 pseudogene 27; ribosomal protein L6 pseudogene 19; ribosomal protein L6; ribosomal protein L6 pseudogene 10
+Q02878	rpl6	Homo sapiens	ribosomal protein L6 pseudogene 27; ribosomal protein L6 pseudogene 19; ribosomal protein L6; ribosomal protein L6 pseudogene 10
+Q02878	RPL6P19	Homo sapiens	ribosomal protein L6 pseudogene 27; ribosomal protein L6 pseudogene 19; ribosomal protein L6; ribosomal protein L6 pseudogene 10
+Q02878	RPL6P10	Homo sapiens	ribosomal protein L6 pseudogene 27; ribosomal protein L6 pseudogene 19; ribosomal protein L6; ribosomal protein L6 pseudogene 10
+Q6RUP8	Impdh2	Homo sapiens	IMP (inosine monophosphate) dehydrogenase 2
+Q9Y3B4	SF3B14	Homo sapiens	splicing factor 3B, 14 kDa subunit
+Q59G11	MKRN1	Homo sapiens	makorin ring finger protein pseudogene 6; makorin ring finger protein 1
+Q59G11	MKRN9P	Homo sapiens	makorin ring finger protein pseudogene 6; makorin ring finger protein 1
+Q6P169	SMC4	Homo sapiens	structural maintenance of chromosomes 4
+Q59G12	TMPO	Homo sapiens	thymopoietin
+Q05DV5	ZC3HAV1	Homo sapiens	zinc finger CCCH-type, antiviral 1
+Q05DF7	hltf	Homo sapiens	helicase-like transcription factor
+Q99867	TUBB4Q	Homo sapiens	tubulin, beta polypeptide 4, member Q
+Q5H909	MAGED2	Homo sapiens	melanoma antigen family D, 2
+Q3SYP6	ptcd1	Homo sapiens	pentatricopeptide repeat domain 1
+Q7Z726	KPNA2	Homo sapiens	karyopherin alpha 2 (RAG cohort 1, importin alpha 1); karyopherin alpha-2 subunit like
+Q9HC39	GEMIN4	Homo sapiens	gem (nuclear organelle) associated protein 4
+Q567Q0	PPIAL3	Homo sapiens	similar to TRIMCyp; peptidylprolyl isomerase A (cyclophilin A); peptidylprolyl isomerase A (cyclophilin A)-like 3
+Q567Q0	ppiA	Homo sapiens	similar to TRIMCyp; peptidylprolyl isomerase A (cyclophilin A); peptidylprolyl isomerase A (cyclophilin A)-like 3
+Q567Q0	LOC439953	Homo sapiens	similar to TRIMCyp; peptidylprolyl isomerase A (cyclophilin A); peptidylprolyl isomerase A (cyclophilin A)-like 3
+O00422	SAP18	Homo sapiens	Sin3A-associated protein, 18kDa
+Q58FF8	HSP90AB2P	Homo sapiens	heat shock protein 90kDa alpha (cytosolic), class B member 2 (pseudogene)
+Q7Z474	Psma4	Homo sapiens	proteasome (prosome, macropain) subunit, alpha type, 4
+Q59F66	DDX17	Homo sapiens	DEAD (Asp-Glu-Ala-Asp) box polypeptide 17
+Q58FF7	HSP90AB3P	Homo sapiens	heat shock protein 90kDa alpha (cytosolic), class B member 3 (pseudogene)
+Q58FF6	HSP90AB4P	Homo sapiens	heat shock protein 90kDa alpha (cytosolic), class B member 4 (pseudogene)
+Q9BYH9	Serpinb3	Homo sapiens	serpin peptidase inhibitor, clade B (ovalbumin), member 3
+Q9UDI5	wars	Homo sapiens	tryptophanyl-tRNA synthetase
+Q6FIG4	RAB1B	Homo sapiens	RAB1B, member RAS oncogene family
+B3KSI4	tkt	Homo sapiens	transketolase
+B4DYS4	OTUD4	Homo sapiens	OTU domain containing 4
+Q6QE17	Impdh2	Homo sapiens	IMP (inosine monophosphate) dehydrogenase 2
+Q6LCB5	gnai2	Homo sapiens	guanine nucleotide binding protein (G protein), alpha inhibiting activity polypeptide 2
+Q6LCU2	Rpl27	Homo sapiens	ribosomal protein L27
+Q5JNZ5	RPS26P11	Homo sapiens	ribosomal protein S26 pseudogene 11
+B3KX11	Cct3	Homo sapiens	chaperonin containing TCP1, subunit 3 (gamma)
+Q0VAC0	LOC644037	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	LOC645691	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	HNRPA1L-2	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	LOC728643	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	HNRNPA1P2	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	HNRNPA1	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q0VAC0	HNRPA1L3	Homo sapiens	heterogeneous nuclear ribonucleoprotein A1-like 3; similar to heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene 2; heterogeneous nuclear ribonucleoprotein A1; heterogeneous nuclear ribonucleoprotein A1 pseudogene
+Q6ZU70	LOC149837	Homo sapiens	hypothetical protein LOC643406; hypothetical LOC149837
+Q6ZU70	LOC643406	Homo sapiens	hypothetical protein LOC643406; hypothetical LOC149837
+Q8N9C4	ACLY	Homo sapiens	ATP citrate lyase
+Q8IX02	LTF	Homo sapiens	lactotransferrin
+Q9UN81	LOC440264	Homo sapiens	hypothetical LOC440264
+Q5RI19	Hnrnpu	Homo sapiens	heterogeneous nuclear ribonucleoprotein U (scaffold attachment factor A)
+Q75MN1	Gars	Homo sapiens	glycyl-tRNA synthetase
+Q9NVE7	PANK4	Homo sapiens	pantothenate kinase 4
+Q8NHW5	RPLP0P6	Homo sapiens	ribosomal protein, large, P0 pseudogene 2; ribosomal protein, large, P0 pseudogene 3; ribosomal protein, large, P0 pseudogene 6; ribosomal protein, large, P0
+Q8NHW5	RPLP0P2	Homo sapiens	ribosomal protein, large, P0 pseudogene 2; ribosomal protein, large, P0 pseudogene 3; ribosomal protein, large, P0 pseudogene 6; ribosomal protein, large, P0
+Q8NHW5	RPLP0P3	Homo sapiens	ribosomal protein, large, P0 pseudogene 2; ribosomal protein, large, P0 pseudogene 3; ribosomal protein, large, P0 pseudogene 6; ribosomal protein, large, P0
+Q8NHW5	rplP0	Homo sapiens	ribosomal protein, large, P0 pseudogene 2; ribosomal protein, large, P0 pseudogene 3; ribosomal protein, large, P0 pseudogene 6; ribosomal protein, large, P0
+Q9NQ39	RPS10P5	Homo sapiens	ribosomal protein S10 pseudogene 5
+Q7Z524	atxn10	Homo sapiens	ataxin 10
+Q13707	acta2	Homo sapiens	actin, alpha 2, smooth muscle, aorta
+P62333	Psmc6	Homo sapiens	proteasome (prosome, macropain) 26S subunit, ATPase, 6
+P78344	EIF4G2	Homo sapiens	eukaryotic translation initiation factor 4 gamma, 2
+Q658S9	TXNDC5	Homo sapiens	thioredoxin domain containing 5 (endoplasmic reticulum); muted homolog (mouse)
+Q658S9	MUTED	Homo sapiens	thioredoxin domain containing 5 (endoplasmic reticulum); muted homolog (mouse)
+
