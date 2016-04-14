@@ -24,37 +24,19 @@ work.prj <- total.prj
 # to vselp.rda object and load it
 load("rdat/vselp-total.rda")
 
-# load vector with converstion ipi to gene names
+# load vector with converstion ipi to gene names (ipi.gv)
 load("rdat/ipi-gv.rda")
 
-# merge results for selected experiments in one data.table
-d.merge <- work.prj[[1]][["mdata"]][, c("prot", "pg", names(work.prj[[1]][["cols"]])),
-  with = F ]
-if (length(work.prj) >= 2) {
-  for (i in 2:length(work.prj)) {
-    d.merge <- merge(d.merge, work.prj[[i]][["mdata"]][
-      , c("prot", names(work.prj[[i]][["cols"]])), with = F],
-      by = "prot", all = T)
-  }
-}
-# subset only selected by connected components proteins
-d.merge <- d.merge[d.merge$prot %in% names(v.selp), ]
-# to matrix
-m.merge <- as.matrix(d.merge[, -(1:2), with = F])
-rownames(m.merge) <- d.merge$prot
-
-# convert names to genes
-ipi.rows <- rownames(m.merge) %in% names(ipi.gv)
-rownames(m.merge)[ipi.rows] <- ipi.gv[rownames(m.merge)[ipi.rows]]
+# get matrix with all data for selected proteins with converted names
+m.plot <- getIDIRTmtx(work.prj, v.selp, ipi.gv)
 
 ## some basic plots
 
 library(gplots)
 
-# m.plot <- m.merge
-
+# left proteins that has at least 0.6 value at least in one exp
 m.plot <- m.plot[apply(m.plot, 1, function(x)
-  any(x > 0.6, na.rm = T)), ]
+  any(x >= 0.6, na.rm = T)), ]
 dim(m.plot)
 
 # filter matrix to plot heatmap (we sholud exclude "NA" id dist matrix)

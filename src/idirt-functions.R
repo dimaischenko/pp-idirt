@@ -1,6 +1,15 @@
-# functions
+# simple functions
 ulength <- function(x) length(unique(x))
 "%ni%" <- Negate("%in%")
+# get all elements from matrix except diagonal
+rm_diag <- function(m) {
+  if (nrow(m) != ncol(m)) {
+    warning("Matrix is not quadratic.")
+    return(NULL)
+  }
+  m.dm <- nrow(m)
+  m[-(1:m.dm + rep(0:(m.dm - 1) * m.dm))]
+}
 
 # huge function to load data from setup list
 # create matricies with data
@@ -132,6 +141,36 @@ getBestProt <- function(l.prj) {
   )
 
   return(v.selp)
+}
+
+# get matrix with merged data for all experiments
+# Arguments:
+#   l.prj -- project structure data
+#   selp -- vector with selected proteins
+#   ipigene -- vector with converstion ipi to gene names
+getIDIRTmtx <- function(l.prj, selp, ipigene) {
+  # merge results from all experiments into one data.table
+  d.merge <- l.prj[[1]][["mdata"]][, c("prot", "pg", names(l.prj[[1]][["cols"]])),
+    with = F ]
+  if (length(l.prj) >= 2) {
+    for (i in 2:length(l.prj)) {
+      d.merge <- merge(d.merge, l.prj[[i]][["mdata"]][
+        , c("prot", names(l.prj[[i]][["cols"]])), with = F],
+        by = "prot", all = T)
+    }
+  }
+  
+  # subset only selected by connected components proteins
+  d.merge <- d.merge[d.merge$prot %in% names(v.selp), ]
+  # to matrix
+  m.merge <- as.matrix(d.merge[, -(1:2), with = F])
+  rownames(m.merge) <- d.merge$prot
+
+  # convert names to genes
+  ipi.rows <- rownames(m.merge) %in% names(ipi.gv)
+  rownames(m.merge)[ipi.rows] <- ipi.gv[rownames(m.merge)[ipi.rows]]
+  
+  return(m.merge)
 }
 
 ## deprecated function?
