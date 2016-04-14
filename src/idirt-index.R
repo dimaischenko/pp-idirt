@@ -18,26 +18,27 @@ total.prj <- loadIDIRT(i.prj)
 work.prj <- total.prj
 
 # find best proteins from protein groups
-v.selp <- getBestProt(work.prj)
-save(list = c("v.selp"), file = "rdat/vselp-total.rda")
+#v.selp <- getBestProt(work.prj)
+#save(list = c("v.selp"), file = "rdat/vselp-total.rda")
 # this function not very fast, so i save its results (for all experiments)
 # to vselp.rda object and load it
 load("rdat/vselp-total.rda")
 
-load("dat/ipi.rda")
+# load vector with converstion ipi to gene names
+load("rdat/ipi-gv.rda")
 
 # merge results for selected experiments in one data.table
-d.merge <- work.prj[[1]][["mdata"]][, c("prot", "pg", names(work.prj[[v.exp[1]]][["cols"]])),
+d.merge <- work.prj[[1]][["mdata"]][, c("prot", "pg", names(work.prj[[1]][["cols"]])),
   with = F ]
 if (length(work.prj) >= 2) {
   for (i in 2:length(work.prj)) {
-    d.merge <- merge(d.merge, l.prj[[i]][["mdata"]][
-      , c("prot", names(l.prj[[i]][["cols"]])), with = F], by = "prot", all = T)
+    d.merge <- merge(d.merge, work.prj[[i]][["mdata"]][
+      , c("prot", names(work.prj[[i]][["cols"]])), with = F],
+      by = "prot", all = T)
   }
 }
 # subset only selected by connected components proteins
 d.merge <- d.merge[d.merge$prot %in% names(v.selp), ]
-
 # to matrix
 m.merge <- as.matrix(d.merge[, -(1:2), with = F])
 rownames(m.merge) <- d.merge$prot
@@ -46,7 +47,6 @@ rownames(m.merge) <- d.merge$prot
 ipi.rows <- rownames(m.merge) %in% names(ipi.gv)
 rownames(m.merge)[ipi.rows] <- ipi.gv[rownames(m.merge)[ipi.rows]]
 
-#save(list = c("l.prj", "ipi.gv", "v.selp", "m.aplot"), file = "shiny/dat/prj.rda")
 
 m.plot <- m.plot[apply(m.plot, 1, function(x)
   any(x > 0.6, na.rm = T)), ]
