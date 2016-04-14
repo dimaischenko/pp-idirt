@@ -47,10 +47,16 @@ rownames(m.merge) <- d.merge$prot
 ipi.rows <- rownames(m.merge) %in% names(ipi.gv)
 rownames(m.merge)[ipi.rows] <- ipi.gv[rownames(m.merge)[ipi.rows]]
 
+## some basic plots
+
+library(gplots)
+
+# m.plot <- m.merge
 
 m.plot <- m.plot[apply(m.plot, 1, function(x)
   any(x > 0.6, na.rm = T)), ]
 dim(m.plot)
+
 # filter matrix to plot heatmap (we sholud exclude "NA" id dist matrix)
 while(sum(is.na(dist(m.plot))) != 0) {
   tmp <- sort(apply(as.matrix(dist(m.plot)), 1, function(x) sum(is.na(x))), 
@@ -60,8 +66,8 @@ while(sum(is.na(dist(m.plot))) != 0) {
 dim(m.plot)
 
 # plot heatmap
-pdf("fig/test_hm_0.8.pdf", width = 7, height = 11)
-par(ps = 9)
+#pdf("fig/test_hm_0.8.pdf", width = 7, height = 11)
+#par(ps = 9)
 heatmap.2(m.plot, Colv = F, 
           dendrogram = "row",
           trace = "none", lhei = c(2, 12),
@@ -75,20 +81,16 @@ heatmap.2(m.plot, Colv = F,
           #col = c(rep("white", 11), brewer.pal(n = 11, name = "Spectral")),
           col = brewer.pal(n = 11, name = "Spectral"),
           margin = c(12, 12))
-dev.off()
+#dev.off()
 
 ## clusters
-bestK(dist(m.plot), kmax = 50)
 
 m.dist <- dist(m.plot)
 hc.plot <- (hclust(dist(m.plot)))
 hc.plot.cut <- cutree(hc.plot, k = 16)
 
-mean(silhouette(x = hc.plot.cut, dmatrix = as.matrix(dist(m.plot)))[, 3])
-plot(silhouette(x = hc.plot.cut, dmatrix = as.matrix(dist(m.plot))))
-
-pdf("fig/all_0.8_pat.pdf", width = 8, height = 8)
-par(ps = 9)
+#pdf("fig/all_0.8_pat.pdf", width = 8, height = 8)
+#par(ps = 9)
 layout(matrix(1:16, nrow = 4, byrow = T))
 par(mar = c(4, 4, 2, 2))
 for (k.cl in 1:16) {
@@ -107,4 +109,4 @@ legend("topleft", legend = names(hc.plot.cut[hc.plot.cut == k.cl]),
        y.intersp = 1, box.col = "gray40", box.lwd = .8,
        ncol = 1, cex = .8, bg = rgb(1, 1, 1, 0.7))
 }
-dev.off()
+#dev.off()
