@@ -28,8 +28,12 @@ v.cols <- c("pg", "prot", "isContam", v.exp, vr.exp)
 dt <- total.prj[[v.name]][["mdata"]][, v.cols, with = F]
 dt <- dt[!is.na(dt[[v.exp]]), ]
 setnames(dt, c("pg", "prot", "isContam", "value", "var"))
-# get desc
+# get project descripton
 p.desc <- proj.desc[.(v.name, v.exp)]
+# check rotation to L/H
+isHL <- !total.prj[[v.name]][["rev"]][which(
+  names(total.prj[[v.name]][["cols"]]) == v.exp)]
+hl.lbl <- ifelse(isHL, "H/(H+L)", "L/(H+L)")
 @
 
 <<echo=F>>=
@@ -45,6 +49,7 @@ cat("Experiment title:")
 cat(strwrap(p.desc[["edesc"]], width = d.wdt), sep = "\n")
 cat("Experiment comment:")
 cat(strwrap(p.desc[["Comment"]], width = d.wdt), sep = "\n")
+cat(sprintf("In this experiment we use %s values.", hl.lbl))
 
 cat("Number of protein groups:")
 cat(ulength(dt$pg))
@@ -65,7 +70,7 @@ cat(ulength(dt$gene))
 
 <<echo=F,fig=T,pdf=T,width=5,height=4>>=
 hist(dt$value,
-     breaks = 50, main = "H/L histogram", xlab = "H/L")
+     breaks = 50, main = sprintf("%s histogram", hl.lbl), xlab = hl.lbl)
 @
 
 <<echo=F,fig=T,pdf=T,width=5,height=4>>=
@@ -83,12 +88,13 @@ cat(ulength(dt$gene))
 
 <<echo=F,fig=T,pdf=T,width=5,height=4>>=
 hist(dt$value,
-     breaks = 50, main = "H/L histogram (no contaminants)", xlab = "H/L")
+     breaks = 50, main = sprintf("%s histogram (no contaminants)", hl.lbl),
+                                 xlab = hl.lbl)
 @
 
 \clearpage
 <<echo=F>>=
-cat("Estimate mean and sd.")
+cat(sprintf("Estimate mean and sd of %s.", hl.lbl))
 dt.mean <- mean(dt$value, na.rm = T)
 cat("Mean:")
 cat(dt.mean)
@@ -99,7 +105,7 @@ cat(dt.sd)
 
 <<echo=F,fig=T,pdf=T,width=5,height=4>>=
 hist(dt$value, prob = T,
-     main = "H/L histogram", xlab = "H/L", breaks = 50)
+     main = sprintf("%s histogram", hl.lbl), xlab = hl.lbl, breaks = 50)
 lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
       col = "red", lwd = 2)
 @
@@ -107,7 +113,7 @@ lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
 <<echo=F>>=
 cat("Estimate significant proteins (p-value <= 0.05).")
 pv.th <- 0.05
-cat("Threshold H/L value:")
+cat(sprintf("Threshold %s value:", hl.lbl))
 hl.th <- qnorm(1 - pv.th, mean = dt.mean, sd = dt.sd)
 cat(hl.th)
 @
@@ -118,7 +124,7 @@ v.clr <- rep("white", 50)
 v.fdb <- min(which(v.brks >= hl.th))
 v.clr[(v.fdb - 1):length(v.clr)] <- "dodgerblue"
 hist(dt$value, prob = T,
-     main = "H/L histogram", xlab = "H/L",
+     main = sprintf("%s histogram", hl.lbl), xlab = hl.lbl,
      breaks = v.brks, col = v.clr)
 abline(v = hl.th, lty = 2, col = "gray30")
 @
@@ -131,7 +137,7 @@ dt$apv <- p.adjust(dt$pv, method = "BH")
 dt <- dt[order(dt$pv), ]
 
 dt.print <- dt[, c("gene", "value", "var", "pv", "apv"), with = F]
-setnames(dt.print, c("gene", "H/L", "H/L variability %", "pvalue", "a-pvalue"))
+setnames(dt.print, c("gene", hl.lbl, "H/L variability %", "pvalue", "a-pvalue"))
          
 print(dt.print[dt.print[["pvalue"]] <= pv.th, ],
       row.names = F)
