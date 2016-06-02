@@ -1,9 +1,16 @@
+library(data.table)
+
 # setwd
 hdir <- "/home/dima/mega/pp-idirt/sweave/"
 setwd(hdir)
 
 # load data
 load("../rdat/total_data.rda")
+
+# load project desc
+proj.desc <- fread("../data/tbls/prj_info.txt", header = T, sep = "\t",
+                   stringsAsFactors = F)
+setkey(proj.desc, proj, exp)
 
 for (v.name in names(total.prj)) {
   setwd(hdir)
@@ -17,3 +24,4 @@ for (v.name in names(total.prj)) {
     Sweave("/home/dima/mega/pp-idirt/sweave/pp-report.Rnw")
   }
 }
+

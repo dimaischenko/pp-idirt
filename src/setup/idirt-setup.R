@@ -28,8 +28,8 @@ i.prj <- list(
   Tandem = list(
     name = "Tandem",
     path = "data/idirt/s_tand.csv",
-    cols = c("e1" = "1f",
-             "e2" = "1m"),
+    cols = c("1f" = "1f",
+             "1m" = "1m"),
     norm = F,
     rev = c(F, T)),
 

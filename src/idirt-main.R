@@ -12,6 +12,11 @@ source("src/lib/idirt-functions.R")
 # load data from setup file
 total.prj <- loadIDIRT(i.prj)
 
+# load project descr
+proj.desc <- fread("data/tbls/prj_info.txt", header = T, sep = "\t",
+                        stringsAsFactors = F)
+setkey(proj.desc, proj, exp)
+
 # we can subset needed experiments for example:
 # work.prj <- total.prj[c("IDIRT", "Tandem")]
 # but now we select all avaliable experiments

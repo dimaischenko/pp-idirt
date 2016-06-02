@@ -10,6 +10,9 @@ load("/home/dima/mega/pp-idirt/rdat/total_data.rda")
 load("/home/dima/mega/pp-idirt/rdat/ipi-gv.rda")
 load("/home/dima/mega/pp-idirt/rdat/vselp-total.rda")
 ulength <- function(x) length(unique(x))
+
+# default page width for strings
+d.wdt <- 80
 @
 
 
@@ -25,11 +28,24 @@ v.cols <- c("pg", "prot", "isContam", v.exp, vr.exp)
 dt <- total.prj[[v.name]][["mdata"]][, v.cols, with = F]
 dt <- dt[!is.na(dt[[v.exp]]), ]
 setnames(dt, c("pg", "prot", "isContam", "value", "var"))
+# get desc
+p.desc <- proj.desc[.(v.name, v.exp)]
 @
 
 <<echo=F>>=
+cat("Project:")
+cat(v.name)
+cat("Project title:")
+cat(strwrap(p.desc[["Name"]], width = d.wdt), sep ="\n")
+cat("Project description:")
+cat(strwrap(p.desc[["pdesc"]], width = d.wdt), sep = "\n")
 cat("Experiment:")
 cat(v.exp)
+cat("Experiment title:")
+cat(strwrap(p.desc[["edesc"]], width = d.wdt), sep = "\n")
+cat("Experiment comment:")
+cat(strwrap(p.desc[["Comment"]], width = d.wdt), sep = "\n")
+
 cat("Number of protein groups:")
 cat(ulength(dt$pg))
 cat("Number of proteins and isoforms:")
