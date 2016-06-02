@@ -60,9 +60,15 @@ loadIDIRT <- function(l.prj) {
     # save genes names
     res.data[[i]][["ipi"]] <- ipi.gen
     
+    # data cols
+    cols.int <- paste0(sprintf("Ratio H/L %s",
+                               ifelse(l.prj[[i]][["norm"]], "Normalized ", "")),
+                               l.prj[[i]][["cols"]])
+    cols.var <- paste0("Ratio H/L Variability [%] ", l.prj[[i]][["cols"]])
+    
     # protein data matrix
     i.mdt <- i.dt[rep(1:nrow(i.dt), sapply(l.prot, length)),
-                  l.prj[[i]][["cols"]], with = F]
+                  c(cols.int, cols.var), with = F]
     i.mdt$pg <- rep(1:nrow(i.dt), sapply(l.prot, length))
     i.mdt$prot <- unlist(l.prot)
     
@@ -78,8 +84,10 @@ loadIDIRT <- function(l.prj) {
     }
     
     # save matrix
+    n.col <- length(res.data[[i]]$cols)
     res.data[[i]][["mdata"]] <- i.mdt
-    colnames(res.data[[i]][["mdata"]])[1:length(res.data[[i]]$cols)] <- names(l.prj[[i]]$cols)
+    colnames(res.data[[i]][["mdata"]])[1:n.col] <- names(l.prj[[i]]$cols)
+    colnames(res.data[[i]][["mdata"]])[(n.col + 1):(2*n.col)] <- paste0("var_", names(l.prj[[i]]$cols))
   }
   
   return(res.data)

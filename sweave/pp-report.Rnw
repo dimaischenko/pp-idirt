@@ -1,0 +1,128 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<echo=F,print=F>>=
+library(data.table)
+# load data
+load("/home/dima/mega/pp-idirt/rdat/total_data.rda")
+load("/home/dima/mega/pp-idirt/rdat/ipi-gv.rda")
+load("/home/dima/mega/pp-idirt/rdat/vselp-total.rda")
+ulength <- function(x) length(unique(x))
+@
+
+
+<<echo=F>>=
+# subset experiment
+v.exp <- "2b"
+vr.exp <- paste0("var_", v.exp)
+# needed cols
+v.cols <- c("pg", "prot", "isContam", v.exp, vr.exp)
+dt <- total.prj[["IDIRT"]][["mdata"]][, v.cols, with = F]
+dt <- dt[!is.na(dt[[v.exp]]), ]
+setnames(dt, c("pg", "prot", "isContam", "value", "var"))
+@
+
+<<echo=F>>=
+cat("Experiment:")
+cat(v.exp)
+cat("Number of protein groups:")
+cat(ulength(dt$pg))
+cat("Number of proteins and isoforms:")
+cat(ulength(dt$prot))
+cat("Subset one protein for each protein group (algorithm describe later).")
+dt <- dt[dt$prot %in% names(v.selp), ]
+dt$gene <- dt$prot
+i.ipi <- dt$gene %in% names(ipi.gv)
+dt$gene[i.ipi] <- ipi.gv[dt$gene[i.ipi]]
+dt$gene[dt$gene == "Orf1-untagged(LD401):"] <- "Orf1"
+dt$gene[dt$gene == "Orf2-untagged(LD288):"] <- "Orf2"
+dt$gene <- gsub(".*:(.*)", "\\1", dt$gene)
+cat("Number of selected proteins:")
+cat(ulength(dt$gene))
+@
+
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$value,
+     breaks = 50, main = "H/L histogram", xlab = "H/L")
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$var,
+     breaks = 50, main = "H/L variability histogram",
+     xlab = "H/L Variability [%]")
+@
+
+<<echo=F>>=
+cat("Remove contaminants.")
+dt <- dt[!dt$isContam & !grepl("CON\\_", dt$gene), ]
+cat("Number of proteins:")
+cat(ulength(dt$gene))
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$value,
+     breaks = 50, main = "H/L histogram (no contaminants)", xlab = "H/L")
+@
+
+\clearpage
+<<echo=F>>=
+cat("Estimate mean and sd.")
+dt.mean <- mean(dt$value, na.rm = T)
+cat("Mean:")
+cat(dt.mean)
+dt.sd <- sd(dt$value, na.rm = T)
+cat("Sigma (standard deviation):")
+cat(dt.sd)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$value, prob = T,
+     main = "H/L histogram", xlab = "H/L", breaks = 50)
+lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
+      col = "red", lwd = 2)
+@
+
+<<echo=F>>=
+cat("Estimate significant proteins (p-value <= 0.05).")
+pv.th <- 0.05
+cat("Threshold H/L value:")
+hl.th <- qnorm(1 - pv.th, mean = dt.mean, sd = dt.sd)
+cat(hl.th)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+v.brks <- seq(min(dt$value), max(dt$value), length.out = 50)
+v.clr <- rep("white", 50)
+v.fdb <- min(which(v.brks >= hl.th))
+v.clr[(v.fdb - 1):length(v.clr)] <- "dodgerblue"
+hist(dt$value, prob = T,
+     main = "H/L histogram", xlab = "H/L",
+     breaks = v.brks, col = v.clr)
+abline(v = hl.th, lty = 2, col = "gray30")
+@
+
+<<echo=F>>=
+cat("List of significatnt proteins (a-pvalue: adjusted p-value):")
+dt$pv <- pnorm(q = dt$value, mean = dt.mean, sd = dt.sd,
+                   lower.tail = F)
+dt$apv <- p.adjust(dt$pv, method = "BH")
+dt <- dt[order(dt$pv), ]
+
+dt.print <- dt[, c("gene", "value", "var", "pv", "apv"), with = F]
+setnames(dt.print, c("gene", "H/L", "H/L variability %", "pvalue", "a-pvalue"))
+         
+print(dt.print[dt.print[["pvalue"]] <= pv.th, ],
+      row.names = F)
+@
+
+\clearpage
+
+<<echo=F>>=
+cat("Additional total list of proteins:")
+print(dt.print,
+      row.names = F, topn = nrow(dt.print))
+@
+\end{document}
