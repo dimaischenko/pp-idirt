@@ -187,6 +187,7 @@ getIDIRTmtx <- function(l.prj, selp, ipigene) {
 # ipi to gene names
 ipi2Gene <- function(l.prj) {
   require(data.table)
+  require(plyr)
   
   # all ipi to prot
   ipi.gen <- data.table(unique(do.call(rbind, lapply(l.prj, function(x) x[["ipi"]]))))
@@ -222,6 +223,9 @@ ipi2Gene <- function(l.prj) {
   names(uni.g) <- df.david$From
 
   ipi.gv[ipi.sv %in% names(uni.g)] <- uni.g[ipi.sv[ipi.sv %in% names(uni.g)]]
+  
+  # final filtration
+  ipi.gv <- gsub("(.*?) .*", "\\1", ipi.gv)
 
   return(ipi.gv)
 }

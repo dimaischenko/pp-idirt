@@ -15,11 +15,14 @@ ulength <- function(x) length(unique(x))
 
 <<echo=F>>=
 # subset experiment
-v.exp <- "2b"
+# load names of project and experiment (v.name and v.exp)
+#load("/home/dima/mega/pp-idirt/sweave/exp.rda")
+#v.name <- "Tandem"
+#v.exp <- "e1"
 vr.exp <- paste0("var_", v.exp)
 # needed cols
 v.cols <- c("pg", "prot", "isContam", v.exp, vr.exp)
-dt <- total.prj[["IDIRT"]][["mdata"]][, v.cols, with = F]
+dt <- total.prj[[v.name]][["mdata"]][, v.cols, with = F]
 dt <- dt[!is.na(dt[[v.exp]]), ]
 setnames(dt, c("pg", "prot", "isContam", "value", "var"))
 @

@@ -25,6 +25,8 @@ work.prj <- total.prj
 load("rdat/vselp-total.rda")
 
 # load vector with converstion ipi to gene names (ipi.gv)
+#ipi.gv <- ipi2Gene(total.prj)
+#save(list = c("ipi.gv"), file = "rdat/ipi-gv.rda")
 load("rdat/ipi-gv.rda")
 
 # get matrix with all data for selected proteins with converted names
