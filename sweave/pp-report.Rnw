@@ -13,6 +13,16 @@ ulength <- function(x) length(unique(x))
 
 # default page width for strings
 d.wdt <- 80
+
+# Chauvenet filtration of normal distribution
+ChauvenetFilter <- function(x, th = 0.5) {
+  x.mean <- mean(x)
+  x.sd <- sd(x)
+  xpr <- pnorm(x, x.mean, x.sd, lower.tail = F) * length(x)
+  xpl <- pnorm(x, x.mean, x.sd, lower.tail = T) * length(x)
+  return(x[xpr > th & xpl > th])
+}
+
 @
 
 
@@ -95,10 +105,10 @@ hist(dt$value,
 \clearpage
 <<echo=F>>=
 cat(sprintf("Estimate mean and sd of %s.", hl.lbl))
-dt.mean <- mean(dt$value, na.rm = T)
+dt.mean <- mean(dt$value)
 cat("Mean:")
 cat(dt.mean)
-dt.sd <- sd(dt$value, na.rm = T)
+dt.sd <- sd(dt$value)
 cat("Sigma (standard deviation):")
 cat(dt.sd)
 @
@@ -111,8 +121,37 @@ lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
 @
 
 <<echo=F>>=
-cat("Estimate significant proteins (p-value <= 0.05).")
-pv.th <- 0.05
+ch.th <- 2
+cat(sprintf("Apply Chauvenet filtration with coefficient: %s (P > 2/n).", ch.th))
+maxIt <- 10
+nIt <- 0
+xval <- dt$value
+while(nIt < maxIt) {
+  xval.n <- ChauvenetFilter(xval, th = ch.th)
+  if (length(xval.n) == length(xval)) break
+  xval <- xval.n
+  nIt <- nIt + 1
+}
+cat("Number of outliers:")
+cat(abs(length(xval.n) - length(dt$value)))
+dt.mean <- mean(xval.n)
+dt.sd <- sd(xval.n)
+cat("Filtered mean:")
+cat(dt.mean)
+cat("Filtered sd:")
+cat(dt.sd)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$value, prob = T,
+     main = sprintf("%s histogram with filtered approximation", hl.lbl), xlab = hl.lbl, breaks = 50)
+lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
+      col = "red", lwd = 2)
+@
+
+<<echo=F>>=
+pv.th <- 1e-2
+cat(sprintf("Estimate significant proteins (p-value <= %s).", round(pv.th, digits = 2)))
 cat(sprintf("Threshold %s value:", hl.lbl))
 hl.th <- qnorm(1 - pv.th, mean = dt.mean, sd = dt.sd)
 cat(hl.th)
@@ -128,6 +167,8 @@ hist(dt$value, prob = T,
      breaks = v.brks, col = v.clr)
 abline(v = hl.th, lty = 2, col = "gray30")
 @
+
+\clearpage
 
 <<echo=F>>=
 cat("List of significatnt proteins (a-pvalue: adjusted p-value):")
