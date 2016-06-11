@@ -48,29 +48,29 @@ ChauvenetFilter <- function(x, th = 0.5) {
 # *******
 
 #' Load experiment from file
-#' create experiment object.
+#' create idirt object.
 #' 
 #' @param file Path to file.
 #' @param exp.name Experiment name.
-#' @return Experiment object.
-load_exp <- function(file, exp.name) {
+#' @return idirt object.
+idirt <- function(file, exp.name) {
   require(data.table)
   
   # load file data
   dt.a <- fread(file, header = T)
   # colnames and experiment name to upper case
-  exp.name <- toupper(exp.name)
+  exp.Name <- toupper(exp.name)
   setnames(dt.a, toupper(colnames(dt.a)))
   # generate needed columns
   v.col <- c("MAJORITY PROTEIN IDS",
              sprintf(fmt = c("PEPTIDES %s", "RAZOR + UNIQUE PEPTIDES %s",
                              "RATIO H/L %s", "RATIO H/L NORMALIZED %s",
-                             "RATIO H/L VARIABILITY [%%] %s"), exp.name),
+                             "RATIO H/L VARIABILITY [%%] %s"), exp.Name),
              "PEP", "CONTAMINANT", "REVERSE"
              )
   # report error if not all columns present in data file
   if (!all(v.col %in% colnames(dt.a))) {
-    stop(sprintf("Can not load %s experiment", exp.name))
+    stop(sprintf("Can not load %s experiment", exp.Name))
   }
   # subset needed columns
   dt.s <- dt.a[, v.col, with = F]
@@ -83,8 +83,8 @@ load_exp <- function(file, exp.name) {
   
   # generate final data
   dt.f <- dt.s[rep(1:nrow(dt.s), sapply(l.prot, length)),]
-  dt.f$PG <- rep(1:nrow(dt.s), sapply(l.prot, length))
-  dt.f$PROTEIN <- unlist(l.prot)
+  dt.f[["PG"]] <- rep(1:nrow(dt.s), sapply(l.prot, length))
+  dt.f[["PROTEIN"]] <- unlist(l.prot)
   dt.f[["MAJORITY PROTEIN IDS"]] <- NULL
   
   # rename columns
@@ -95,16 +95,21 @@ load_exp <- function(file, exp.name) {
     dt.f[[col]] <- as.numeric(dt.f[[col]])
   }
   
-  # return data.table
-  return(dt.f)
+  # remove NA values
+  dt.f <- dt.f[!is.na(dt.f$hl) & !is.na(dt.f$hln), ]
+  
+  # create and return idirt object
+  exp <- list(name = exp.name, data = dt.f)
+  class(exp) <- "idirt"
+  return(exp)
 }
 
-#' Function to generate tex report for experiment.
+#' Function to generate tex report for idirt experiment.
 #' 
-#' @param exp Experiment object.
-#' @param wdir Directory to write tex file.
+#' @param odirt idirt object.
+#' @param wdir Directory to write tex file with report.
 #' @param tmpl Template for report.
-generate_report <- function(exp, wdir, tmpl = "sweave/exp-report.Rnw") {
+generate_report <- function(odirt, wdir, tmpl = "sweave/exp-report.Rnw") {
   require(tools)
   require(utils)
   

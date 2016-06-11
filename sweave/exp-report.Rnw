@@ -5,13 +5,139 @@
 
 <<echo=F,print=F>>=
 # default page width for strings
+require(dplyr)
 d.wdt <- 80
+dt <- odirt[["data"]]
+dt$aff <- (dt$hln^-1 + 1)^-1 
 @
 
 <<echo=F>>=
+cat("Project:")
+print(odirt[["name"]])
 cat("Number of proteins:")
-print(nrow(exp))
+print(nrow(dt))
 cat("Number of protein groups:")
-print(ulength(exp$pg))
+print(ulength(dt[["pg"]]))
 @
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$aff, breaks = 50,
+     main = sprintf("Affinity histogram"), xlab = "Affinity")
+@
+
+
+<<echo=F>>=
+cat("Subset >= 3 peptides, remove contaminants and PEP < [reverse PEP]...")
+mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
+dt <- dt[dt$score < mn.pep & dt$rupeps >= 3 & dt$contaminant == "", ]
+cat("Number of proteins:")
+print(nrow(dt))
+cat("Number of protein groups:")
+print(ulength(dt[["pg"]]))
+cat("Subset one protein for each protein group")
+dt <- dt[, .SD[1], by = list(pg)]
+@
+
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$aff, breaks = 50,
+     main = sprintf("Affinity histogram"), xlab = "Affinity")
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$hlv,
+     breaks = 50, main = "H/L variability histogram",
+     xlab = "H/L Variability [%]")
+@
+
+<<echo=F>>=
+cat("Estimate mean and sd of affinity.")
+dt.mean <- mean(dt$aff)
+cat("Mean:")
+cat(dt.mean)
+dt.sd <- sd(dt$aff)
+cat("Sigma (standard deviation):")
+cat(dt.sd)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$aff, prob = T, main = "Affinity histogram", xlab = "Affinity", breaks = 50)
+lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
+      col = "red", lwd = 2)
+@
+
+<<echo=F>>=
+ch.th <- 2
+cat(sprintf("Apply Chauvenet filtration with coefficient: %s (P > 2/n).", ch.th))
+maxIt <- 10
+nIt <- 0
+xval <- dt$aff
+while(nIt < maxIt) {
+  xval.n <- ChauvenetFilter(xval, th = ch.th)
+  if (length(xval.n) == length(xval)) break
+  xval <- xval.n
+  nIt <- nIt + 1
+}
+cat("Number of outliers:")
+cat(abs(length(xval.n) - length(dt$aff)))
+dt.mean <- mean(xval.n)
+dt.sd <- sd(xval.n)
+cat("Filtered mean:")
+cat(dt.mean)
+cat("Filtered sd:")
+cat(dt.sd)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+hist(dt$aff, prob = T, main = "Affinity histogram with filtered approximation",
+     xlab = "Affinity", breaks = 50)
+lines(density(rnorm(n = 10*nrow(dt), mean = dt.mean, sd = dt.sd)),
+      col = "red", lwd = 2)
+@
+
+<<echo=F>>=
+pv.th <- 1e-2
+cat(sprintf("Estimate significant proteins (p-value <= %s).", round(pv.th, digits = 2)))
+cat("Threshold affinity value:")
+hl.th <- qnorm(1 - pv.th, mean = dt.mean, sd = dt.sd)
+cat(hl.th)
+@
+
+<<echo=F,fig=T,pdf=T,width=5,height=4>>=
+v.brks <- seq(min(dt$aff), max(dt$aff), length.out = 50)
+v.clr <- rep("white", 50)
+v.fdb <- min(which(v.brks >= hl.th))
+if (v.fdb == Inf) { v.fdb <- length(v.brks)}
+v.clr[(v.fdb - 1):length(v.clr)] <- "dodgerblue"
+hist(dt$aff, prob = T,
+     main = "Affinity histogram", xlab = "Affinity",
+     breaks = v.brks, col = v.clr)
+
+abline(v = hl.th, lty = 2, col = "gray30")
+@
+
+\clearpage
+
+<<echo=F>>=
+cat("List of significatnt proteins (a-pvalue: adjusted p-value):")
+dt$pv <- pnorm(q = dt$aff, mean = dt.mean, sd = dt.sd,
+                   lower.tail = F)
+dt$apv <- p.adjust(dt$pv, method = "BH")
+dt <- dt[order(dt$pv), ]
+
+dt.print <- dt[, c("protein", "aff", "hlv", "pv", "apv"), with = F]
+setnames(dt.print, c("protein", "Affinity", "H/L variability %", "pvalue", "a-pvalue"))
+         
+print(dt.print[dt.print[["pvalue"]] <= pv.th, ],
+      row.names = F)
+@
+
+\clearpage
+
+<<echo=F>>=
+cat("Additional total list of proteins:")
+print(dt.print,
+      row.names = F, topn = nrow(dt.print))
+@
+
 \end{document}
