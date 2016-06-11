@@ -37,6 +37,7 @@ in_dir <- function(dir, code) {
 ChauvenetFilter <- function(x, th = 0.5) {
   x.mean <- mean(x)
   x.sd <- sd(x)
+  
   xpr <- pnorm(x, x.mean, x.sd, lower.tail = F) * length(x)
   xpl <- pnorm(x, x.mean, x.sd, lower.tail = T) * length(x)
   return(x[xpr > th & xpl > th])
@@ -106,9 +107,33 @@ load_exp <- function(file, exp.name) {
 generate_report <- function(exp, wdir, tmpl = "sweave/exp-report.Rnw") {
   require(tools)
   require(utils)
+  
   # get absolute path to template
   tmpl.apath <- file_path_as_absolute(tmpl)
   # create direcotry for output and generate report
   dir.create(wdir, recursive = T)
-  in_dir(wdir, Sweave(file = tmpl.apath))
+  
+  # TODO(ischenko): very interesting approach
+  #  but now i didn't find any solution for automatic
+  #  sweave generation in new environment
+
+  # create new driver for Sweave
+  swdriver <- RweaveLatex()
+  # set current environment
+  swenv <- environment() 
+  # redefine function to evaluation
+  SwEvalWithOpt <- function (expr, options){
+    if(options$eval){
+      res <- try(withVisible(eval(expr, swenv)),
+                 silent=TRUE)
+      if(inherits(res, "try-error")) return(res)
+      if(options$print | (options$term & res$visible))
+        print(res$value)
+    }
+    return(res)
+  }
+  swdriver$runcode <- makeRweaveLatexCodeRunner(evalFunc = SwEvalWithOpt)
+  
+  # run sweave with constructed driver
+  in_dir(wdir, Sweave(file = tmpl.apath, driver = swdriver))
 }
