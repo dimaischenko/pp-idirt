@@ -1,3 +1,6 @@
+% This template used only inside the function generate_report()
+% So it should not evaluated manually
+
 \documentclass{article}
 
 \begin{document}
@@ -5,10 +8,11 @@
 
 <<echo=F,print=F>>=
 # default page width for strings
-require(dplyr)
 d.wdt <- 80
+# get data
 dt <- odirt[["data"]]
-dt$aff <- (dt$hln^-1 + 1)^-1 
+dt$aff <- (dt$hln^-1 + 1)^-1
+dt$protein <- substr(dt$protein, start = 1, stop = 20)
 @
 
 <<echo=F>>=
@@ -29,7 +33,7 @@ hist(dt$aff, breaks = 50,
 <<echo=F>>=
 cat("Subset >= 3 peptides, remove contaminants and PEP < [reverse PEP]...")
 mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
-dt <- dt[dt$score < mn.pep & dt$rupeps >= 3 & dt$contaminant == "", ]
+dt <- dt[dt$score < mn.pep & dt$peps >= 3 & dt$contaminant == "", ]
 cat("Number of proteins:")
 print(nrow(dt))
 cat("Number of protein groups:")
