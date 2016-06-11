@@ -1,0 +1,17 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<echo=F,print=F>>=
+# default page width for strings
+d.wdt <- 80
+@
+
+<<echo=F>>=
+cat("Number of proteins:")
+print(nrow(exp))
+cat("Number of protein groups:")
+print(ulength(exp$pg))
+@
+\end{document}
