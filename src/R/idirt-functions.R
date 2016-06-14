@@ -37,7 +37,8 @@ loadIDIRT <- function(l.prj) {
     
     # work with protein names
     # split by proteins part
-    v.pat <- c("^Orf", "^CON", "^REV", "^IPI")
+    v.pat <- c("^Orf", "^CON", "^REV", "^IPI", "")
+    v.pat <- c("")
     
     i.dt[["Majority Protein IDs"]] <- gsub(">", "", i.dt[["Majority Protein IDs"]])
     l.prot <- sapply(i.dt[["Majority Protein IDs"]], function(x) {
@@ -78,9 +79,9 @@ loadIDIRT <- function(l.prj) {
     # reverse H/L if needed (if rev in idirt-setup for column is TRUE)
     for (kr in 1:length(l.prj[[i]][["rev"]])) {
       if (l.prj[[i]][["rev"]][kr]) {
-        i.mdt[[kr]] <- 1 / i.mdt[[kr]]
+        i.mdt[[kr]] <- 1 / as.numeric(i.mdt[[kr]])
       }
-      i.mdt[[kr]] <- (i.mdt[[kr]]^-1 + 1)^-1
+      i.mdt[[kr]] <- (as.numeric(i.mdt[[kr]])^-1 + 1)^-1
     }
     
     # save matrix
@@ -101,6 +102,7 @@ loadIDIRT <- function(l.prj) {
 getBestProt <- function(l.prj) {
   require(cluster)
   require(data.table)
+  require(igraph)
 
   # merge protein groups from all data to one data.table
   d.pg <- l.prj[[1]][["mdata"]][, c("prot", "pg"), with = F]
