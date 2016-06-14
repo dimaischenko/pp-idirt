@@ -6,7 +6,7 @@ source("src/R/exp-functions.r")
 source("src/R/affinity-obj.r")
 
 # load experiment
-cur.exp <- mqexp(file = "data/idirt/s_24_new.csv", "12")
+cur.exp <- mqexp(file = "data/idirt/s_24_new.csv", "14")
 
 # generate report
 generate_report(cur.exp, wdir = "rep/1a")

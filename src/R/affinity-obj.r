@@ -38,10 +38,13 @@ affinity.mqexp <- function(exp, minpep, avalue,
   # filter experiment data
   dt <- dt[dt$score < mn.pep & dt$peps >= minpep & 
              dt$contaminant == "", ]
+  # prepare affinity
   dt$val <- ifelse(rep(use.normalized, nrow(dt)),
                    dt$hln, dt$hl)
-  # calculate affinity value
-  dt$aff <- (dt$val^-1 + 1)^-1
+  if (avalue %in% c("L/H", "L/(H+L)")) dt$val <- 1 / dt$val
+  if (avalue %in% c("H/(H+L)", "L/(H+L)")) dt$val <- (dt$val^-1 + 1)^-1
+  dt$aff <- dt$val
+  
   # subset proteins
   if (protnames == "") {
     dt <- dt[, .SD[1], by = list(pg)]
