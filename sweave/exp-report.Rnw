@@ -10,14 +10,14 @@
 # default page width for strings
 d.wdt <- 80
 # get data
-dt <- odirt[["data"]]
+dt <- exp[["data"]]
 dt$aff <- (dt$hln^-1 + 1)^-1
 dt$protein <- substr(dt$protein, start = 1, stop = 20)
 @
 
 <<echo=F>>=
 cat("Project:")
-print(odirt[["name"]])
+print(exp[["name"]])
 cat("Number of proteins:")
 print(nrow(dt))
 cat("Number of protein groups:")
