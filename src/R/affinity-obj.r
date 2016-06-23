@@ -49,7 +49,7 @@ affinity.mqexp <- function(exp, minpep, avalue,
   if (protnames == "") {
     dt <- dt[, .SD[1], by = list(pg)]
   } else {
-    dt <- dt[dt$protein %in% protnames, ]
+    dt <- dt[dt$pid == 1, ]
   }
   aff <- dt[, c("protein", "aff"), with = F]
   class(aff) <- c("affinity", class(aff))

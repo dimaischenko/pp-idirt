@@ -88,12 +88,15 @@ mqexp <- function(file, exp.name) {
   # generate final data
   dt.f <- dt.s[rep(1:nrow(dt.s), sapply(l.prot, length)),]
   dt.f[["PG"]] <- rep(1:nrow(dt.s), sapply(l.prot, length))
+  # genrate id for proteins in PG
+  dt.f[["PID"]] <- unlist(sapply(l.prot, function(x) seq(1, length(x), 1)))
   dt.f[["PROTEIN"]] <- unlist(l.prot)
   dt.f[["MAJORITY PROTEIN IDS"]] <- NULL
   
   # rename columns
   setnames(dt.f, c("peps", "rupeps", "hl", "hln", "hlv",
-                   "score", "contaminant", "reverse", "pg", "protein"))
+                   "score", "contaminant", "reverse", "pg", "pid",
+                   "protein"))
   # manually convert needed columns to numeric
   for (col in c("peps", "rupeps", "hl", "hln", "hlv", "score")) {
     dt.f[[col]] <- as.numeric(dt.f[[col]])
