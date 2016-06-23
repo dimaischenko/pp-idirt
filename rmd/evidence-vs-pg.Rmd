@@ -135,3 +135,25 @@ ev.stat$se <- ev.stat$evsd / sqrt(ev.stat$evn)
 ev.stat$sem <- ev.stat$se / ev.stat$evhl
 hist(ev.stat$sem, br = 100, xlab = "H/L Standard Error / Mean")
 ```
+
+## Peptides statistic
+```{r pepstat, fig.width=6, fig.height=6}
+# sort by number of peptides
+ev.stat <- ev.stat[order(ev.stat$evn, decreasing = T), ]
+
+# histogram H/L for proteins with maximal peptides
+layout(matrix(1:9, nrow = 3, byrow = 3))
+for (i.prot in ev.stat$Protein[1:9]) {
+  x <- cur.ev$`Ratio H/L`[cur.ev$Protein == i.prot]
+  hist(x, xlab = "H/L", main = i.prot, breaks = 20)
+  abline(v = mean(x), col = "red", lwd = 2)
+}
+
+# histogram H/L for proteins with 3 peptides
+for (i.prot in ev.stat$Protein[ev.stat$evn == 3][1:9]) {
+  x <- cur.ev$`Ratio H/L`[cur.ev$Protein == i.prot]
+  hist(x, xlab = "H/L", main = i.prot, breaks = 20)
+  abline(v = mean(x), col = "red", lwd = 2)
+}
+
+```
