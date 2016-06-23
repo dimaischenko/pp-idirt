@@ -1,6 +1,9 @@
 # setwd
 setwd("/home/dima/pp-idirt/")
 
+# libs
+library(data.table)
+
 # load libs
 source("src/R/exp-functions.r")
 source("src/R/affinity-obj.r")
