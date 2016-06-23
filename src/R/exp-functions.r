@@ -50,35 +50,50 @@ ChauvenetFilter <- function(x, th = 0.5) {
 # Main artillery
 # *******
 
-#' Load experiment from file
+#' Load experiment from file or data frame (data.table)
 #' create mqexp object.
 #' 
-#' @param file Path to file.
+#' @param source Path to file or data.table
 #' @param exp.name Experiment name.
 #' @return mqexp object.
 #' @export
-mqexp <- function(file, exp.name) {
+mqexp <- function(source, exp.name, ...) UseMethod("mqexp")
+
+#' Read file and then create mqexp object
+#'
+#' @export
+mqexp.character <- function(source, exp.name) {
   require(data.table)
   
   # load file data
-  dt.a <- fread(file, header = T)
-  # colnames and experiment name to upper case
-  exp.Name <- toupper(exp.name)
+  dt.a <- fread(source, header = T)
+  # colnames to upper case
   setnames(dt.a, toupper(colnames(dt.a)))
+  
+  # call mqexp for data table
+  return(mqexp(dt.a, exp.name))
+}
+
+#'
+#'
+#' @export
+mqexp.data.frame <- function(source, exp.name) {
+  # experiment name to upper case
+  exp.Name <- toupper(exp.name)
   # generate needed columns
   v.col <- c("MAJORITY PROTEIN IDS",
              sprintf(fmt = c("PEPTIDES %s", "RAZOR + UNIQUE PEPTIDES %s",
                              "RATIO H/L %s", "RATIO H/L NORMALIZED %s",
                              "RATIO H/L VARIABILITY [%%] %s"), exp.Name),
              "PEP", "CONTAMINANT", "REVERSE"
-             )
+  )
   # report error if not all columns present in data file
-  if (!all(v.col %in% colnames(dt.a))) {
+  if (!all(v.col %in% colnames(source))) {
     stop(sprintf("Can not load %s experiment", exp.Name))
   }
   # subset needed columns
-  dt.s <- dt.a[, v.col, with = F]
-
+  dt.s <- source[, v.col, with = F]
+  
   # split protein group to proteins
   # get list with splitted proteins for each protein group
   l.prot <- sapply(dt.s[["MAJORITY PROTEIN IDS"]], function(x) {
@@ -109,6 +124,32 @@ mqexp <- function(file, exp.name) {
   exp <- list(name = exp.name, data = dt.f)
   class(exp) <- "mqexp"
   return(exp)
+}
+
+#'
+#'
+#' @export
+mqexp.default <- function(data, ...) {
+  stop(sprintf("This class (%s) of source doesn't supported.",
+               class(data)))
+}
+
+#' Function to load list of mqexps
+#' 
+#' @param source Path to file
+#' @param exp.names Vector with names of experiments
+#' @return List with "mqexp" objects
+#' @export
+get_list_mqexp <- function(source, exp.names) {
+  require(data.table)
+  
+  # load file data
+  dt.a <- fread(source, header = T)
+  # colnames to upper case
+  setnames(dt.a, toupper(colnames(dt.a)))
+  
+  return(lapply(exp.names, function(exp.name)
+    mqexp(dt.a, exp.name)))
 }
 
 #' Function to generate tex report for mqexp experiment.

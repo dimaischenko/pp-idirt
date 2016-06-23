@@ -10,15 +10,14 @@ source("src/R/aff-collection-obj.r")
 
 # getrate manually experiment names vector
 #e.names <- c("L1_1", "L1_2", "L1_3", "1a", "1b", "1c", "2a", "2b")
+
 # read exp template (from John)
 dt.tmpl <- fread("data/tbls/experimentalDesignTemplate.txt", header = T, sep = "\t")
-
 # get exp names
 e.names <- unique(dt.tmpl$Experiment)
 
 # load all exp in list
-l.exp <- lapply(e.names, function(exp)
-  mqexp(file = "data/idirt/s_total.txt", exp))
+l.exp <- get_list_mqexp("data/idirt/s_total.txt", e.names)
 names(l.exp) <- e.names
 
 # get affinity object for each experiment
