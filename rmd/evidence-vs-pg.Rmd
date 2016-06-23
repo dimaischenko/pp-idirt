@@ -1,0 +1,138 @@
+---
+title: "Evidence vs Protein Groups"
+author: "Dima Ischenko"
+date: "June 23, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(root.dir = "/home/dima/pp-idirt/")
+knitr::opts_knit$set(root.dir = "/home/dima/pp-idirt/")
+library(data.table)
+```
+
+## Data loading and table preparation
+
+```{r load, warning=F}
+# help funcs
+ulength <- function(x) length(unique(x))
+"%ni%" <- Negate("%in%")
+
+# set experiment
+cur.exp <- "2"
+
+## Evidence
+
+# load evidence
+d.ev <- fread("data/idirt/s_24_evidence.txt", header = T)
+nrow(d.ev)
+
+# subset data from evidence for current experiment
+d.sev <- d.ev[d.ev$Experiment == cur.exp & d.ev$Reverse != "+", ]
+nrow(d.sev)
+
+# parse proteins in evidence
+l.eprot <- strsplit(d.sev$Proteins, split = ";")
+cur.ev <- d.sev[rep(1:nrow(d.sev), sapply(l.eprot, length)), ]
+cur.ev$Protein <- unlist(l.eprot)
+# not NA in H/L ratio
+cur.ev <- cur.ev[!is.na(cur.ev$`Ratio H/L`), ]
+nrow(cur.ev)
+
+## Protein Groups
+
+# load protein groups
+d.pg <- fread("data/idirt/s_24_new.csv", header = T)
+nrow(d.pg)
+
+# parse protein IDs column from protein group
+# to separate proteins
+l.prot <- strsplit(d.pg$`Protein IDs`, split = ";")
+cur.pg <- d.pg[rep(1:nrow(d.pg), sapply(l.prot, length)), ]
+cur.pg[["pg"]] <- rep(1:nrow(d.pg), sapply(l.prot, length))
+cur.pg[["pid"]] <- unlist(sapply(l.prot, function(x) seq(1, length(x), 1)))
+cur.pg[["Protein"]] <- unlist(l.prot)
+
+# get interested columns
+v.col <- sprintf(fmt = c("Peptides %s", "Razor + unique peptides %s",
+                         "Ratio H/L %s", "Ratio H/L Normalized %s",
+                         "Ratio H/L count %s",
+                         "Ratio H/L Variability [%%] %s"), cur.exp)
+           
+# convert to numeric
+for (col in v.col) {
+  cur.pg[[col]] <- as.numeric(cur.pg[[col]])
+}
+
+cur.pg <- cur.pg[, c("pg", "pid", "Protein", v.col,
+                     "PEP", "Contaminant", "Reverse"), with = F]
+setnames(cur.pg, c("pg", "pid", "Protein", "peps", "rupeps",
+                      "hl", "hln", "hlc", "hlv", "PEP", "contam", "reverse"))
+
+# find proteins that singletones in their protein groups
+pg.stat <- cur.pg[, list(n = length(pid)), by = list(pg)]
+v.singp <- cur.pg$Protein[cur.pg$pg %in% pg.stat$pg[pg.stat$n == 1]]
+# number of singletones
+length(v.singp)
+
+# remove NA values
+cur.pg <- cur.pg[!is.na(cur.pg$hl) & cur.pg$reverse != "+", ]
+nrow(cur.pg)
+
+# nunbmer of unique proteins in Evidence
+ulength(cur.ev$Protein)
+# number of unique proteins in Protein Groups
+ulength(cur.pg$Protein)
+```
+
+## Calculate statistics for proteins in both approaches
+
+```{r stat}
+# calculate statistics by proteins from Evidence and Protein Groups
+ev.stat <- cur.ev[, list(evhl = mean(`Ratio H/L`),
+                         evhln = mean(`Ratio H/L normalized`),
+                         evn = length(`MS/MS Count`),
+                         evsd = sd(`Ratio H/L`)),
+                  by = list(Protein)]
+pg.stat <- cur.pg[, list(pghl = mean(hl),
+                         pghln = mean(hln),
+                         pgn = mean(peps),
+                         pgv = mean(hlv)),
+                  by = list(Protein)]
+
+# merge Evidence and Protein Group statistics
+tot.stat <- merge(ev.stat, pg.stat, by = "Protein", all = T)
+
+# set colors for singletones
+v.pcol <- rep(1, length(tot.stat$Protein))
+names(v.pcol) <- tot.stat$Protein
+v.pcol[names(v.pcol) %in% v.singp] <- 2
+```
+
+```{r pplot, fig.height=6, fig.width=6}
+plot(x = log(tot.stat$evhl), y = log(tot.stat$pghl),
+     xlab = "log Evidence mean H/L", ylab = "log PrGroup mean H/L",
+     col = v.pcol)
+legend("topleft", legend = c("Protein in multiple prot group", "Prot in singletone prot group"),
+       bty = "n", fill = c(1, 2))
+plot(x = tot.stat$evhl, y = tot.stat$pghl,
+     xlab = "Evidence mean H/L", ylab = "PrGroup mean H/L",
+     xlim = c(0, 6), ylim = c(0, 6),
+     col = v.pcol)
+
+plot(x = log(tot.stat$evhln), y = log(tot.stat$pghln),
+     xlab = "log Evidence mean H/L", ylab = "log PrGroup mean H/L",
+     col = v.pcol)
+plot(x = (tot.stat$evn), y = (tot.stat$pgn),
+     xlab = "Evidence # spectra", ylab = "PrGroup # spectra",
+     col = v.pcol)
+```
+
+## Caclculate standard error of mean
+
+```{r mean error, fig.width=6, fig.height=6}
+ev.stat$se <- ev.stat$evsd / sqrt(ev.stat$evn)
+ev.stat$sem <- ev.stat$se / ev.stat$evhl
+hist(ev.stat$sem, br = 100, xlab = "H/L Standard Error / Mean")
+```

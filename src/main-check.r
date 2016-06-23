@@ -6,9 +6,11 @@ source("src/R/exp-functions.r")
 source("src/R/affinity-obj.r")
 source("src/R/aff-collection-obj.R")
 
-# load experiments
+## load experiments
+
 # getrate manually experiment names vector
 e.names <- as.character(2:24)
+
 # load all exp in list
 l.exp <- lapply(e.names, function(exp)
   mqexp(file = "data/idirt/s_24_new.csv", exp))
@@ -27,7 +29,8 @@ cur.col <- affcollection(l.aff)
 head(cur.col[["amtx"]])
 
 ## one experiment study
-# subset exp from list
+
+# subset one experiment from list
 cur.exp <- l.exp[["2"]]
 
 # generate report
