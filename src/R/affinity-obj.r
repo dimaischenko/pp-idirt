@@ -19,12 +19,14 @@ affinity <- function(exp, ...) UseMethod("affinity")
 #'   H/L, L/H, H/(H+L) or L/(H+L) (!not used now)
 #' @param use.normalized Use or not Normalized ratios of H/L to
 #'   calculate affinity
+#' @param score.filt Filter proteins by Reverse search and score
 #' @param protnames Specified names of selected proteins from
 #'   mqexp object, if protnames is empty character ("") subset
 #'   first protein for each protein group
 #' @export
 affinity.mqexp <- function(exp, minpep, avalue,
                            use.normalized,
+                           score.filt = F,
                            protnames = c(""), ...) {
   # check avalue
   posv <- c("H/L", "L/H", "H/(H+L)", "L/(H+L)")
@@ -33,11 +35,13 @@ affinity.mqexp <- function(exp, minpep, avalue,
   }
   # get data
   dt <- exp[["data"]]
-  # calc minimal decoy p-score
-  mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
-  # filter experiment data
-  dt <- dt[dt$score < mn.pep & dt$peps >= minpep & 
-             dt$contaminant == "", ]
+  if (score.filt) {
+    # calc minimal decoy p-score
+    mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
+    # filter experiment data
+    dt <- dt[dt$score < mn.pep, ]
+  }
+  dt <- dt[dt$peps >= minpep & dt$contaminant == "", ]
   # prepare affinity
   dt$val <- ifelse(rep(use.normalized, nrow(dt)),
                    dt$hln, dt$hl)

@@ -32,8 +32,8 @@ hist(dt$aff, breaks = 50,
 
 <<echo=F>>=
 cat("Subset >= 3 peptides, remove contaminants and PEP < [reverse PEP]...")
-mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
-dt <- dt[dt$score < mn.pep & dt$peps >= 3 & dt$contaminant == "", ]
+#mn.pep <- min(dt[["score"]][dt[["reverse"]] == "+"])
+dt <- dt[dt$peps >= 3 & dt$contaminant == "", ]
 cat("Number of proteins:")
 print(nrow(dt))
 cat("Number of protein groups:")

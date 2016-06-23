@@ -15,9 +15,6 @@ affcollection <- function(alist) {
   acoll <- list()
   class(acoll) <- "affcoll"
   
-  # add affinity list
-  acoll[["alist"]] <- alist
-  
   # add matrix
   # get all proteins
   v.prot <- unique(unlist(lapply(alist, function(x) x$protein)))

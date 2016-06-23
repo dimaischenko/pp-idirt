@@ -4,16 +4,21 @@ setwd("/home/dima/pp-idirt/")
 # load libs
 source("src/R/exp-functions.r")
 source("src/R/affinity-obj.r")
-source("src/R/aff-collection-obj.R")
+source("src/R/aff-collection-obj.r")
 
 ## load experiments
 
 # getrate manually experiment names vector
-e.names <- as.character(2:24)
+#e.names <- c("L1_1", "L1_2", "L1_3", "1a", "1b", "1c", "2a", "2b")
+# read exp template (from John)
+dt.tmpl <- fread("data/tbls/experimentalDesignTemplate.txt", header = T, sep = "\t")
+
+# get exp names
+e.names <- unique(dt.tmpl$Experiment)
 
 # load all exp in list
 l.exp <- lapply(e.names, function(exp)
-  mqexp(file = "data/idirt/s_24_new.csv", exp))
+  mqexp(file = "data/idirt/s_total.txt", exp))
 names(l.exp) <- e.names
 
 # get affinity object for each experiment
@@ -31,10 +36,10 @@ head(cur.col[["amtx"]])
 ## one experiment study
 
 # subset one experiment from list
-cur.exp <- l.exp[["2"]]
+cur.exp <- l.exp[["1a"]]
 
 # generate report
-generate_report(l.exp[[1]], wdir = "rep/1a")
+generate_report(cur.exp, wdir = "rep/1a")
 
 # get affinity object
 cur.aff <- affinity(cur.exp, minpep = 3, avalue = "H/(H+L)", use.normalized = T)
